@@ -1,0 +1,23 @@
+from typing import List
+
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        res = []
+        currentres = []
+
+        def subs(i, nums, currentres, res):
+            if i == len(nums):
+                res.append(currentres[:])  
+                return 
+            
+            
+            currentres.append(nums[i])
+            subs(i + 1, nums, currentres, res)
+            
+            
+            currentres.pop()
+            subs(i + 1, nums, currentres, res)
+
+
+        subs(0, nums, currentres, res)
+        return res
